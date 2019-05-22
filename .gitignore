@@ -1,0 +1,7 @@
+.vs/
+ClassicRestApi/bin
+ClassicRestApi/obj
+GraphQLApi/bin
+GraphQLApi/obj
+ODataApi/bin
+ODataApi/obj
