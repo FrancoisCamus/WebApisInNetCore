@@ -9,10 +9,10 @@
     }
   },
   "profiles": {
-    "IIS Express": {
+    "IIS Express odata": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "odata/Books",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -1,0 +1,1 @@
+﻿Largely based on https://devblogs.microsoft.com/odata/asp-net-core-odata-now-available/
