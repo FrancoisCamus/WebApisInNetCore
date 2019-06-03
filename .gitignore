@@ -5,3 +5,7 @@ GraphQLApi/bin
 GraphQLApi/obj
 ODataApi/bin
 ODataApi/obj
+GrpcApi/GrpcApi/bin
+GrpcApi/GrpcApi/obj
+GrpcApi/GrpcApiClient/bin
+GrpcApi/GrpcApiClient/obj
