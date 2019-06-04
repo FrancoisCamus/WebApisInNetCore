@@ -1,5 +1,7 @@
 ﻿Largely based on https://devblogs.microsoft.com/odata/asp-net-core-odata-now-available/
 
+Official documentation: https://www.odata.org/getting-started/basic-tutorial/#queryData
+
 Queries:
 
 - GET https://localhost:44344/odata/Books
@@ -18,3 +20,9 @@ Content-Type: application/json
      "Street":"Zhongshan RD"
    }
 }
+
+- GET https://localhost:44344/odata/Books?$filter=Price le 50
+
+- GET https://localhost:44344/odata/Books?$filter=Price le 50&$expand=Press($select=Name)&$select=ISBN
+
+- GET https://localhost:44344/odata/Books?$orderby=Id%20desc

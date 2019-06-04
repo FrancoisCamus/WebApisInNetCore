@@ -51,6 +51,9 @@ namespace ODataApi
             app.UseHttpsRedirection();
             app.UseMvc(b =>
             {
+                // Enables all OData query options
+                b.Select().Expand().Filter().OrderBy().MaxTop(100).Count();
+
                 b.MapODataServiceRoute("odata", "odata", GetEdmModel());
             });
         }
