@@ -26,15 +26,26 @@ namespace ODataApi.Controllers
         }
 
         [EnableQuery]
+        [HttpGet]
         public IActionResult Get()
         {
             return Ok(_db.Books);
         }
 
         [EnableQuery]
+        [HttpGet("{key}")]
         public IActionResult Get(int key)
         {
             return Ok(_db.Books.FirstOrDefault(c => c.Id == key));
+        }
+
+        [EnableQuery]
+        [HttpPost]
+        public IActionResult Post([FromBody]Book book)
+        {
+            _db.Books.Add(book);
+            _db.SaveChanges();
+            return Created(book);
         }
     }
 }
