@@ -1,6 +1,6 @@
 ﻿namespace GraphQLApi.Entities
 {
-    public enum SocialNetworkType
+    public enum SNType
     {
         Instagram,
         Twitter

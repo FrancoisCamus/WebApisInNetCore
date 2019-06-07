@@ -9,3 +9,4 @@ GrpcApi/GrpcApi/bin
 GrpcApi/GrpcApi/obj
 GrpcApi/GrpcApiClient/bin
 GrpcApi/GrpcApiClient/obj
+*.user

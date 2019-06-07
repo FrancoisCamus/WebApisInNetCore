@@ -1,4 +1,5 @@
-﻿using GraphQLApi.Services;
+﻿using GraphiQl;
+using GraphQLApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,8 @@ namespace GraphQLApi
 {
     public class Startup
     {
+        public const string GraphQlPath = "/graphql";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,6 +35,7 @@ namespace GraphQLApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseGraphiQl(GraphQlPath);
             app.UseMvc();
         }
     }

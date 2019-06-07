@@ -81,14 +81,14 @@ namespace GraphQLApi.Services
             posts.Add(VoiceCommands);
             SocialNetwork sn1 = new SocialNetwork()
             {
-                Type = SocialNetworkType.Instagram,
+                Type = SNType.Instagram,
                 Author = DinoEsposito,
                 NickName = "@dino",
                 Url = "https://#"
             };
             SocialNetwork sn2 = new SocialNetwork()
             {
-                Type = SocialNetworkType.Twitter,
+                Type = SNType.Twitter,
                 Author = DinoEsposito,
                 NickName = "@dino",
                 Url = "https://#"
