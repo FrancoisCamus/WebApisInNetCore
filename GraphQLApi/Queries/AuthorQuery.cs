@@ -26,13 +26,13 @@ namespace GraphQLApi.Queries
                     return blogService.GetPostsByAuthor(id);
                 }
             );
-            Field<ListGraphType<SocialNetworkType>>(
+            Field<ListGraphType<SocialNetworkProfileType>>(
                 name: "socials",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
                 resolve: context =>
                 {
                     var id = context.GetArgument<int>("id");
-                    return blogService.GetSNsByAuthor(id);
+                    return blogService.GetSocialNetworkProfilesByAuthor(id);
                 }
             );
         }

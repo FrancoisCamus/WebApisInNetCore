@@ -10,22 +10,22 @@
   <Class Name="Shared.Entities.Post">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAEAAgAAAAAAAAAAAEAEBCAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAgAEAAgAAAAAAAAAAAEAEBCAAAAAAAIAA=</HashCode>
       <FileName>Entities\Post.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Author" />
     </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Comments" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Shared.Entities.Comment">
     <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAAAAAAAAAAAACAAAAAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>Entities\Comment.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Post" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Shared.Entities.SocialNetworkProfile">
     <Position X="2.75" Y="3.25" Width="1.75" />
@@ -34,8 +34,8 @@
       <FileName>Entities\SocialNetworkProfile.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Author" />
       <Property Name="Type" />
+      <Property Name="Author" />
     </ShowAsAssociation>
   </Class>
   <Enum Name="Shared.Entities.SocialNetworkType">

@@ -1,5 +1,5 @@
 ﻿using GraphQL.Types;
-using GraphQLApi.Entities;
+using Shared.Entities;
 
 namespace GraphQLApi.Queries.Types
 {
@@ -9,13 +9,13 @@ namespace GraphQLApi.Queries.Types
         {
             Field(x => x.Id);
             Field(x => x.Title);
-            Field(x => x.Url);
-            Field(x => x.Date);
             Field(x => x.Description);
+            Field(x => x.Date);
+            Field(x => x.Url);
             Field<AuthorType>("author");
-            Field<RatingType>("rating");
-            Field<ListGraphType<CommentType>>("comments");
             Field(x => x.Categories, nullable: true);
+            Field(x => x.Rating);
+            Field<ListGraphType<CommentType>>("comments");
         }
     }
 }

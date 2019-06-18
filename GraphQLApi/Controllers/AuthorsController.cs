@@ -30,7 +30,7 @@ namespace GraphQLApi.Controllers
         [HttpGet("{id}/socials")]
         public IActionResult GetSocialsByAuthor(int id)
         {
-            return new ObjectResult(blogService.GetSNsByAuthor(id));
+            return new ObjectResult(blogService.GetSocialNetworkProfilesByAuthor(id));
         }
     }
 }

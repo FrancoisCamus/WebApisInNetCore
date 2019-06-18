@@ -15,8 +15,7 @@ query GetBlogData($id: Int!) {
     categories
     comments {
       description
-      count
-      url
+      commenter
     }
   }
   socials(id: $id) {

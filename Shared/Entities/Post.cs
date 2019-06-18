@@ -13,5 +13,6 @@ namespace Shared.Entities
         public Author Author { get; set; }
         public string[] Categories { get; set; }
         public int Rating { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

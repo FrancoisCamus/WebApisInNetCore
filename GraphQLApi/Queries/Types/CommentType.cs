@@ -1,5 +1,5 @@
 ﻿using GraphQL.Types;
-using GraphQLApi.Entities;
+using Shared.Entities;
 
 namespace GraphQLApi.Queries.Types
 {
@@ -7,9 +7,9 @@ namespace GraphQLApi.Queries.Types
     {
         public CommentType()
         {
-            Field(x => x.Count);
+            Field(x => x.Id);
+            Field(x => x.Commenter);
             Field(x => x.Description);
-            Field(x => x.Url);
         }
     }
 }
