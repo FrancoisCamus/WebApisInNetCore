@@ -9,10 +9,19 @@
     }
   },
   "profiles": {
-    "IIS Express": {
+    "IIS Express books": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "api/books",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+
+    "IIS Express swagger": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "api/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

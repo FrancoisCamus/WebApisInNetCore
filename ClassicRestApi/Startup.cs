@@ -24,11 +24,25 @@ namespace ClassicRestApi
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             SetupEFCore(services);
+            SetupSwagger(services);
         }
 
         private void SetupEFCore(IServiceCollection services)
         {
             services.AddDbContext<BookStoreContext>(opt => opt.UseInMemoryDatabase("BookStore"));
+        }
+
+        private static void SetupSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerDocument(
+                c =>
+                {
+                    c.PostProcess = document =>
+                    {
+                        document.Info.Title = "Book Store";
+                        document.Info.Version = "v1";
+                    };
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +52,22 @@ namespace ClassicRestApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUi3(config => {
+                config.Path = "/api/swagger";
+                config.TransformToExternalPath = (internalUiRoute, request) =>
+                {
+                    if (internalUiRoute.StartsWith("/") == true && internalUiRoute.StartsWith(request.PathBase) == false)
+                    {
+                        return request.PathBase + internalUiRoute;
+                    }
+                    else
+                    {
+                        return internalUiRoute;
+                    }
+                };
+            });
 
             app.UseMvc();
         }
