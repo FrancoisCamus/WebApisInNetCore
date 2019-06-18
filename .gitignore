@@ -10,3 +10,5 @@ GrpcApi/GrpcApi/obj
 GrpcApi/GrpcApiClient/bin
 GrpcApi/GrpcApiClient/obj
 *.user
+Shared/obj/
+Shared/bin/

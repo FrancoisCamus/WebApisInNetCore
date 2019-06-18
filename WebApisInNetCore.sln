@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Grpc", "Grpc", "{25D0858D-E
 		GrpcApi\README.txt = GrpcApi\README.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{E9A304AA-4E28-41BF-BD1C-C3B97380FA8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{7012FE8C-1CAC-4A44-BF93-925F6043B729}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7012FE8C-1CAC-4A44-BF93-925F6043B729}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7012FE8C-1CAC-4A44-BF93-925F6043B729}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A304AA-4E28-41BF-BD1C-C3B97380FA8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A304AA-4E28-41BF-BD1C-C3B97380FA8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A304AA-4E28-41BF-BD1C-C3B97380FA8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A304AA-4E28-41BF-BD1C-C3B97380FA8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
