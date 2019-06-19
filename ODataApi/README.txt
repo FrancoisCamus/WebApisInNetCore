@@ -4,11 +4,11 @@ Official documentation: https://www.odata.org/getting-started/basic-tutorial/#qu
 
 Queries:
 
-- GET https://localhost:44344/odata/Books
+- GET http://localhost:51385/odata/authors
 
-- GET https://localhost:44344/odata/Books(2)
+- GET http://localhost:51385/odata/authors(2)
 
-- POST https://localhost:44344/odata/Books
+- POST http://localhost:51385/odata/authors
 
 Content-Type: application/json
 
@@ -21,8 +21,6 @@ Content-Type: application/json
    }
 }
 
-- GET https://localhost:44344/odata/Books?$filter=Price le 50
+- GET http://localhost:51385/odata/authors?$expand=Posts($select=Title)&$select=Name
 
-- GET https://localhost:44344/odata/Books?$filter=Price le 50&$expand=Press($select=Name)&$select=ISBN
-
-- GET https://localhost:44344/odata/Books?$orderby=Id%20desc
+- GET http://localhost:51385/odata/authors(1)?$expand=Socials($select=NickName,Type)&$select=Name

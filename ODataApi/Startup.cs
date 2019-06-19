@@ -7,7 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OData.Edm;
-using ODataApi.Models;
+using Shared;
+using Shared.Entities;
 
 namespace ODataApi
 {
@@ -23,16 +24,23 @@ namespace ODataApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookStoreContext>(opt => opt.UseInMemoryDatabase("BookLists"));
-
-            services.AddOData();
-
             services.AddMvc(options =>
             {
                 // TODO: Remove when OData does not causes exceptions anymore
                 // See https://github.com/OData/WebApi/issues/1707
                 options.EnableEndpointRouting = false;
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddOData();
+
+            SetupEFCore(services);
+
+            services.AddScoped<BlogService>();
+        }
+
+        private void SetupEFCore(IServiceCollection services)
+        {
+            services.AddDbContext<SharedDbContext>(opt => opt.UseInMemoryDatabase("BlogService"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,13 +50,7 @@ namespace ODataApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
             app.UseMvc(b =>
             {
                 // Enables all OData query options
@@ -61,8 +63,9 @@ namespace ODataApi
         private static IEdmModel GetEdmModel()
         {
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Book>("Books");
-            builder.EntitySet<Press>("Presses");
+            builder.EntitySet<Author>("Authors");
+            builder.EntitySet<Post>("Posts");
+            builder.EntitySet<SocialNetworkProfile>("SocialNetworkProfiles");
             return builder.GetEdmModel();
         }
     }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Shared;
 
 namespace ClassicRestApi
@@ -22,6 +23,10 @@ namespace ClassicRestApi
         {
             services
                 .AddMvc()
+                .AddJsonOptions(options => {
+                    // Avoiding self reference exception for Author property on Post
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             SetupEFCore(services);
@@ -56,8 +61,9 @@ namespace ClassicRestApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUi3(config => {
+            app.UseOpenApi();
+            app.UseSwaggerUi3(config =>
+            {
                 config.Path = "/api/swagger";
                 config.TransformToExternalPath = (internalUiRoute, request) =>
                 {

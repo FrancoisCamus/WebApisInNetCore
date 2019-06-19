@@ -23,7 +23,8 @@ namespace Shared
         public Author GetAuthorById(int id)
         {
             return _context.Authors
-                .Include(p => p.SocialNetworkProfiles)
+                .Include(p => p.Posts)
+                .Include(p => p.Socials)
                 .Where(author => author.Id == id)
                 .FirstOrDefault();
         }

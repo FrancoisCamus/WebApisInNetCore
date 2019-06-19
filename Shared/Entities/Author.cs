@@ -8,6 +8,6 @@ namespace Shared.Entities
         public string Name { get; set; }
         public string Bio { get; set; }
         public List<Post> Posts { get; set; }
-        public List<SocialNetworkProfile> SocialNetworkProfiles { get; set; }
+        public List<SocialNetworkProfile> Socials { get; set; }
     }
 }
