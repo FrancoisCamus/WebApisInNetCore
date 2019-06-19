@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcApiClient", "GrpcApi\Gr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Grpc", "Grpc", "{25D0858D-EA33-40DD-A7E1-2C3AE98E17ED}"
 	ProjectSection(SolutionItems) = preProject
-		GrpcApi\README.txt = GrpcApi\README.txt
+		GrpcApi\README.md = GrpcApi\README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{E9A304AA-4E28-41BF-BD1C-C3B97380FA8A}"
