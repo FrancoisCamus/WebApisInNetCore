@@ -1,17 +1,38 @@
-﻿using Shared.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Shared.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Shared
 {
-    public class DataInitializer : IDataInitializer
+    public class SharedDbContext : DbContext
     {
-        public List<Author> Authors { get; } = new List<Author>();
-        public List<Post> Posts { get; } = new List<Post>();
-        public List<SocialNetworkProfile> SocialNetworkProfiles { get; } = new List<SocialNetworkProfile>();
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<SocialNetworkProfile> SocialNetworkProfiles { get; set; }
 
-        public DataInitializer()
+        public SharedDbContext(DbContextOptions options)
+          : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Post>()
+                .Property(e => e.Categories)
+                .HasConversion(
+                    v => string.Join(",", v),
+                    v => v.Split(','));
+        }
+
+        public void Populate()
+        {
+            if (Authors.Count() > 0 || Posts.Count() > 0 || SocialNetworkProfiles.Count() > 0)
+            {
+                return;
+            }
+
             var DinoEsposito = new Author
             {
                 Id = 1,
@@ -89,8 +110,11 @@ namespace Shared
                 NickName = "@dino",
                 Url = "https://#"
             };
+
             SocialNetworkProfiles.Add(sn1);
             SocialNetworkProfiles.Add(sn2);
+
+            this.SaveChanges();
         }
     }
 }

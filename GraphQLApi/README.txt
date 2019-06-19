@@ -14,8 +14,8 @@ query GetBlogData($id: Int!) {
     }
     categories
     comments {
-      description
       commenter
+      description
     }
   }
   socials(id: $id) {

@@ -1,4 +1,4 @@
-﻿using Shared;
+﻿using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,27 +7,40 @@ namespace GraphQLApi.Services
 {
     public class BlogService
     {
-        private readonly IDataInitializer _dataInitializer;
+        private readonly GraphQLApiDbContext _context;
 
-        public BlogService(IDataInitializer dataInitializer)
+        public BlogService(GraphQLApiDbContext context)
         {
-            _dataInitializer = dataInitializer;
+            _context = context;
+            _context.Populate();
         }
+
         public List<Author> GetAllAuthors()
         {
-            return _dataInitializer.Authors;
+            return _context.Authors.ToList();
         }
+
         public Author GetAuthorById(int id)
         {
-            return _dataInitializer.Authors.Where(author => author.Id == id).FirstOrDefault();
+            return _context.Authors
+                .Include(p => p.SocialNetworkProfiles)
+                .Where(author => author.Id == id)
+                .FirstOrDefault();
         }
+
         public List<Post> GetPostsByAuthor(int id)
         {
-            return _dataInitializer.Posts.Where(post => post.Author.Id == id).ToList();
+            return _context.Posts
+                .Include(p => p.Comments)
+                .Where(post => post.Author.Id == id)
+                .ToList();
         }
+
         public List<SocialNetworkProfile> GetSocialNetworkProfilesByAuthor(int id)
         {
-            return _dataInitializer.SocialNetworkProfiles.Where(sn => sn.Author.Id == id).ToList();
+            return _context.SocialNetworkProfiles
+                .Where(sn => sn.Author.Id == id)
+                .ToList();
         }
     }
 }
