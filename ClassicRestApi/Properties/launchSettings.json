@@ -9,10 +9,10 @@
     }
   },
   "profiles": {
-    "IIS Express books": {
+    "IIS Express authors": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/books",
+      "launchUrl": "api/authors",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -29,7 +29,7 @@
     "ClassicRestApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/books",
+      "launchUrl": "api/authors",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

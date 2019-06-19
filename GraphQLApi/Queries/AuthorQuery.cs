@@ -1,6 +1,6 @@
 ﻿using GraphQL.Types;
 using GraphQLApi.Queries.Types;
-using GraphQLApi.Services;
+using Shared;
 
 namespace GraphQLApi.Queries
 {

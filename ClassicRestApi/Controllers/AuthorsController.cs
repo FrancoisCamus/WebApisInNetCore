@@ -1,9 +1,9 @@
-﻿using GraphQLApi.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Shared;
 
-namespace GraphQLApi.Controllers
+namespace ClassicRestApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/authors")]
     [ApiController]
     public class AuthorsController : ControllerBase
     {

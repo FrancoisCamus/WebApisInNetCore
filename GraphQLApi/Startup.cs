@@ -1,11 +1,11 @@
 ﻿using GraphiQl;
-using GraphQLApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared;
 
 namespace GraphQLApi
 {
@@ -32,7 +32,7 @@ namespace GraphQLApi
 
         private void SetupEFCore(IServiceCollection services)
         {
-            services.AddDbContext<GraphQLApiDbContext>(opt => opt.UseInMemoryDatabase("BlogService"));
+            services.AddDbContext<SharedDbContext>(opt => opt.UseInMemoryDatabase("BlogService"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

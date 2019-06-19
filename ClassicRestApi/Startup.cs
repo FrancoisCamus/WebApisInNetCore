@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared;
 
 namespace ClassicRestApi
 {
@@ -25,11 +26,13 @@ namespace ClassicRestApi
 
             SetupEFCore(services);
             SetupSwagger(services);
+
+            services.AddScoped<BlogService>();
         }
 
         private void SetupEFCore(IServiceCollection services)
         {
-            services.AddDbContext<BookStoreContext>(opt => opt.UseInMemoryDatabase("BookStore"));
+            services.AddDbContext<SharedDbContext>(opt => opt.UseInMemoryDatabase("BlogService"));
         }
 
         private static void SetupSwagger(IServiceCollection services)
@@ -39,7 +42,7 @@ namespace ClassicRestApi
                 {
                     c.PostProcess = document =>
                     {
-                        document.Info.Title = "Book Store";
+                        document.Info.Title = "Blog Service";
                         document.Info.Version = "v1";
                     };
                 });

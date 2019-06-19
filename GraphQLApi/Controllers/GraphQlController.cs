@@ -1,8 +1,8 @@
 ﻿using GraphQL;
 using GraphQL.Types;
 using GraphQLApi.Queries;
-using GraphQLApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using Shared;
 using System.Threading.Tasks;
 
 namespace GraphQLApi.Controllers
@@ -10,11 +10,13 @@ namespace GraphQLApi.Controllers
     [Route(Startup.GraphQlPath)]
     public class GraphQlController : Controller
     {
-        readonly BlogService blogService;
+        private readonly BlogService blogService;
+
         public GraphQlController(BlogService blogService)
         {
             this.blogService = blogService;
         }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQlQuery query)
         {

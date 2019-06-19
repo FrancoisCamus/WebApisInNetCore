@@ -3,13 +3,13 @@ using Shared.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GraphQLApi.Services
+namespace Shared
 {
     public class BlogService
     {
-        private readonly GraphQLApiDbContext _context;
+        private readonly SharedDbContext _context;
 
-        public BlogService(GraphQLApiDbContext context)
+        public BlogService(SharedDbContext context)
         {
             _context = context;
             _context.Populate();
