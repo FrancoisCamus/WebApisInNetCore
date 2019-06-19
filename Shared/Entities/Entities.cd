@@ -3,12 +3,12 @@
   <Class Name="Shared.Entities.Author">
     <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAACAQAAAAAAAAAADAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAADAAAAAQAAAAAAAAAAAAAAAAAACA=</HashCode>
       <FileName>Entities\Author.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Posts" />
-      <Property Name="SocialNetworkProfiles" />
+      <Property Name="Socials" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Shared.Entities.Post">
