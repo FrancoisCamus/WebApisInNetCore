@@ -29,10 +29,24 @@ namespace ClassicRestApi
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            SetupApiVersioning(services);
+            services.AddVersionedApiExplorer(options => options.SubstituteApiVersionInUrl = true);
+
             SetupEFCore(services);
             SetupSwagger(services);
 
             services.AddScoped<BlogService>();
+        }
+
+        private void SetupApiVersioning(IServiceCollection services)
+        {
+            var defaultApiVersion = new ApiVersion(1, 0);
+
+            services.AddApiVersioning(v =>
+            {
+                v.AssumeDefaultVersionWhenUnspecified = true;
+                v.DefaultApiVersion = defaultApiVersion;
+            });
         }
 
         private void SetupEFCore(IServiceCollection services)
@@ -62,21 +76,7 @@ namespace ClassicRestApi
             }
 
             app.UseOpenApi();
-            app.UseSwaggerUi3(config =>
-            {
-                config.Path = "/api/swagger";
-                config.TransformToExternalPath = (internalUiRoute, request) =>
-                {
-                    if (internalUiRoute.StartsWith("/") == true && internalUiRoute.StartsWith(request.PathBase) == false)
-                    {
-                        return request.PathBase + internalUiRoute;
-                    }
-                    else
-                    {
-                        return internalUiRoute;
-                    }
-                };
-            });
+            app.UseSwaggerUi3();
 
             app.UseMvc();
         }

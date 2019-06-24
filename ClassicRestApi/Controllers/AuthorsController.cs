@@ -3,7 +3,8 @@ using Shared;
 
 namespace ClassicRestApi.Controllers
 {
-    [Route("api/authors")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/authors")]
     [ApiController]
     public class AuthorsController : ControllerBase
     {
