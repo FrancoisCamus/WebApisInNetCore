@@ -3,12 +3,14 @@ using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OData.Edm;
+using Microsoft.Extensions.Options;
+using ODataApi.Versioning;
 using Shared;
-using Shared.Entities;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ODataApi
 {
@@ -31,10 +33,34 @@ namespace ODataApi
                 options.EnableEndpointRouting = false;
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddOData();
+            var defaultApiVersion = new ApiVersion(1, 0);
+
+            services.AddApiVersioning(v =>
+            {
+                v.AssumeDefaultVersionWhenUnspecified = true;
+                v.DefaultApiVersion = defaultApiVersion;
+                v.ReportApiVersions = true;
+            });
+
+            services
+                .AddOData()
+                .EnableApiVersioning();
+
+            services.AddODataApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            });
+
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+            services.AddSwaggerGen(
+                options =>
+                {
+                    // add a custom operation filter which sets default values
+                    options.OperationFilter<SwaggerDefaultValues>();
+                });
 
             SetupEFCore(services);
-
             services.AddScoped<BlogService>();
         }
 
@@ -44,7 +70,11 @@ namespace ODataApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env,
+            VersionedODataModelBuilder modelBuilder,
+            IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -53,20 +83,22 @@ namespace ODataApi
 
             app.UseMvc(b =>
             {
-                // Enables all OData query options
+                // Globally enabling all OData query options: 
                 b.Select().Expand().Filter().OrderBy().MaxTop(100).Count();
 
-                b.MapODataServiceRoute("odata", "odata", GetEdmModel());
+                b.MapVersionedODataRoutes("odata", "odata/v{version:apiVersion}", modelBuilder.GetEdmModels());
             });
-        }
 
-        private static IEdmModel GetEdmModel()
-        {
-            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Author>("Authors");
-            builder.EntitySet<Post>("Posts");
-            builder.EntitySet<SocialNetworkProfile>("SocialNetworkProfiles");
-            return builder.GetEdmModel();
+            app.UseSwagger();
+            app.UseSwaggerUI(
+                options =>
+                {
+                    // build a swagger endpoint for each discovered API version
+                    foreach (var description in provider.ApiVersionDescriptions)
+                    {
+                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                    }
+                });
         }
     }
 }

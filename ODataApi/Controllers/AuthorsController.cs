@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Entities;
+using System.Collections.Generic;
 using System.Linq;
+using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ODataApi.Controllers
 {
-    [Route("api/authors")]
-    [ApiController]
+    [ApiVersion("1.0")]
+    [ODataRoutePrefix("Authors")]
     public class AuthorsController : ODataController
     {
         private SharedDbContext _context;
@@ -18,23 +21,30 @@ namespace ODataApi.Controllers
             _context.Populate();
         }
 
+        [ODataRoute()]
+        // Does not work: See global setup in Startup.
+        //[EnableQuery(MaxTop = 100, AllowedQueryOptions = Select | Expand | Filter | OrderBy | Top | Skip | Count)]
         [EnableQuery]
-        [HttpGet]
-        public IActionResult Get()
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<Author>), Status200OK)]
+        public IActionResult GetAll()
         {
             return Ok(_context.Authors);
         }
 
+        [ODataRoute("({id})")]
         [EnableQuery]
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(Author), Status200OK)]
+        public IActionResult GetById(int id)
         {
             return Ok(_context.Authors.FirstOrDefault(c => c.Id == id));
         }
 
-        [EnableQuery]
-        [HttpPost]
-        public IActionResult Post([FromBody]Author author)
+        [ODataRoute]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(Author), Status201Created)]
+        public IActionResult Add([FromBody]Author author)
         {
             _context.Authors.Add(author);
             _context.SaveChanges();

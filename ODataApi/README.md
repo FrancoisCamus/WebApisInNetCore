@@ -4,11 +4,11 @@ Official documentation: https://www.odata.org/getting-started/basic-tutorial/#qu
 
 Queries:
 
-- GET http://localhost:51385/odata/authors
+- GET http://localhost:51385/odata/v1/authors
 
-- GET http://localhost:51385/odata/authors(2)
+- GET http://localhost:51385/odata/v1/authors(2)
 
-- POST http://localhost:51385/odata/authors
+- POST http://localhost:51385/odata/v1/authors
 
 Content-Type: application/json
 
@@ -21,6 +21,6 @@ Content-Type: application/json
    }
 }
 
-- GET http://localhost:51385/odata/authors?$expand=Posts($select=Title)&$select=Name
+- GET http://localhost:51385/odata/v1/authors?$expand=Posts($select=Title)&$select=Name
 
-- GET http://localhost:51385/odata/authors(1)?$expand=Socials($select=NickName,Type)&$select=Name
+- GET http://localhost:51385/odata/v1/authors(1)?$expand=Socials($select=NickName,Type)&$select=Name

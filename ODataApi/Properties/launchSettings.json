@@ -12,7 +12,15 @@
     "IIS Express odata": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "odata/authors",
+      "launchUrl": "odata/v1/authors",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "IIS Express swagger": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +28,7 @@
     "ODataApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/authors",
+      "launchUrl": "odata/v1/authors",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
