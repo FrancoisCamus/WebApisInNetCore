@@ -45,6 +45,11 @@ namespace ODataApi.Controllers
         [ProducesResponseType(typeof(Author), Status201Created)]
         public async Task<IActionResult> AddAsync([FromBody]Author author)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Author added = await this.blogService.AddAuthorAsync(author);
 
             return Created(added);

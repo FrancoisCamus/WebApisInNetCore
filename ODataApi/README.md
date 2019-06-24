@@ -2,6 +2,10 @@
 
 Official documentation: https://www.odata.org/getting-started/basic-tutorial/#queryData
 
+Metadata:
+
+- http://localhost:51385/odata/v1/$metadata
+
 Queries:
 
 - GET http://localhost:51385/odata/v1/authors
@@ -10,15 +14,16 @@ Queries:
 
 - POST http://localhost:51385/odata/v1/authors
 
+- Filter queries:
+-- https://help.nintex.com/en-us/insight/OData/HE_CON_ODATAQueryCheatSheet.htm#Filter
+-- http://localhost:51385/odata/v1/Authors?$expand=Posts,Socials&$filter=startswith(Name,'fr')
+
 Content-Type: application/json
 
 {
-  "Id":3,"ISBN":"82-917-7192-5","Title":"Hary Potter","Author":"J. K. Rowling",
-  "Price":199.99,
-  "Location":{
-     "City":"Shanghai",
-     "Street":"Zhongshan RD"
-   }
+	"id":5,
+	"name": "franky",
+	"bio": "some developer"
 }
 
 - GET http://localhost:51385/odata/v1/authors?$expand=Posts($select=Title)&$select=Name
