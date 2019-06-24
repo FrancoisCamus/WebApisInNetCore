@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shared;
+using System.Threading.Tasks;
 
 namespace ClassicRestApi.Controllers
 {
@@ -16,27 +17,27 @@ namespace ClassicRestApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAllAsync()
         {
-            return new ObjectResult(blogService.GetAllAuthors());
+            return new ObjectResult(await blogService.GetAllAuthorsAsync());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetAuthorById(int id)
+        public async Task<IActionResult> GetAuthorByIdAsync(int id)
         {
-            return new ObjectResult(blogService.GetAuthorById(id));
+            return new ObjectResult(await blogService.GetAuthorByIdAsync(id));
         }
 
         [HttpGet("{id}/posts")]
-        public IActionResult GetPostsByAuthor(int id)
+        public async Task<IActionResult> GetPostsByAuthorAsync(int id)
         {
-            return new ObjectResult(blogService.GetPostsByAuthor(id));
+            return new ObjectResult(await blogService.GetPostsByAuthorAsync(id));
         }
 
         [HttpGet("{id}/socials")]
-        public IActionResult GetSocialsByAuthor(int id)
+        public async Task<IActionResult> GetSocialsByAuthorAsync(int id)
         {
-            return new ObjectResult(blogService.GetSocialNetworkProfilesByAuthor(id));
+            return new ObjectResult(await blogService.GetSocialNetworkProfilesByAuthorAsync(id));
         }
     }
 }
