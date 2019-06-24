@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shared;
+using Shared.Entities;
 using System.Threading.Tasks;
 
 namespace ClassicRestApi.Controllers
@@ -38,6 +39,14 @@ namespace ClassicRestApi.Controllers
         public async Task<IActionResult> GetSocialsByAuthorAsync(int id)
         {
             return new ObjectResult(await blogService.GetSocialNetworkProfilesByAuthorAsync(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAsync([FromBody]Author author)
+        {
+            Author added = await this.blogService.AddAuthorAsync(author);
+
+            return new ObjectResult(added);
         }
     }
 }
