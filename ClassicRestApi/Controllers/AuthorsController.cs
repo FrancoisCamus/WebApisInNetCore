@@ -9,9 +9,9 @@ namespace ClassicRestApi.Controllers
     [ApiController]
     public class AuthorsController : ControllerBase
     {
-        private readonly BlogService blogService;
+        private readonly IBlogService blogService;
 
-        public AuthorsController(BlogService blogService)
+        public AuthorsController(IBlogService blogService)
         {
             this.blogService = blogService;
         }

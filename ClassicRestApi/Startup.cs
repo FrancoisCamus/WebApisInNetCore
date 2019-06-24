@@ -35,7 +35,7 @@ namespace ClassicRestApi
             SetupEFCore(services);
             SetupSwagger(services);
 
-            services.AddScoped<BlogService>();
+            services.AddScoped<IBlogService, BlogService>();
         }
 
         private void SetupApiVersioning(IServiceCollection services)

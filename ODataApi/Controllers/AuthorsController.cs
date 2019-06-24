@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Entities;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ODataApi.Controllers
@@ -13,12 +13,11 @@ namespace ODataApi.Controllers
     [ODataRoutePrefix("Authors")]
     public class AuthorsController : ODataController
     {
-        private SharedDbContext _context;
+        private IBlogService blogService;
 
-        public AuthorsController(SharedDbContext context)
+        public AuthorsController(IBlogService blogService)
         {
-            _context = context;
-            _context.Populate();
+            this.blogService = blogService;
         }
 
         [ODataRoute()]
@@ -26,29 +25,29 @@ namespace ODataApi.Controllers
         //[EnableQuery(MaxTop = 100, AllowedQueryOptions = Select | Expand | Filter | OrderBy | Top | Skip | Count)]
         [EnableQuery]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<Author>), Status200OK)]
-        public IActionResult GetAll()
+        [ProducesResponseType(typeof(List<Author>), Status200OK)]
+        public async Task<IActionResult> GetAllAsync()
         {
-            return Ok(_context.Authors);
+            return Ok(await this.blogService.GetAllAuthorsAsync());
         }
 
         [ODataRoute("({id})")]
         [EnableQuery]
         [Produces("application/json")]
         [ProducesResponseType(typeof(Author), Status200OK)]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetByIdAsync(int id)
         {
-            return Ok(_context.Authors.FirstOrDefault(c => c.Id == id));
+            return Ok(await this.blogService.GetAuthorByIdAsync(id));
         }
 
         [ODataRoute]
         [Produces("application/json")]
         [ProducesResponseType(typeof(Author), Status201Created)]
-        public IActionResult Add([FromBody]Author author)
+        public async Task<IActionResult> AddAsync([FromBody]Author author)
         {
-            _context.Authors.Add(author);
-            _context.SaveChanges();
-            return Created(author);
+            Author added = await this.blogService.AddAuthorAsync(author);
+
+            return Created(added);
         }
     }
 }

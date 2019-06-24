@@ -6,7 +6,7 @@ namespace GraphQLApi.Queries
 {
     public class AuthorQuery : ObjectGraphType
     {
-        public AuthorQuery(BlogService blogService)
+        public AuthorQuery(IBlogService blogService)
         {
             Field<AuthorType>(
                 name: "author",

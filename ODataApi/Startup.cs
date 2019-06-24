@@ -61,7 +61,7 @@ namespace ODataApi
                 });
 
             SetupEFCore(services);
-            services.AddScoped<BlogService>();
+            services.AddScoped<IBlogService, BlogService>();
         }
 
         private void SetupEFCore(IServiceCollection services)

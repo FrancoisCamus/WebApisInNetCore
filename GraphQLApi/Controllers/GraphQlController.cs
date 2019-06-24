@@ -10,9 +10,9 @@ namespace GraphQLApi.Controllers
     [Route(Startup.GraphQlPath)]
     public class GraphQlController : Controller
     {
-        private readonly BlogService blogService;
+        private readonly IBlogService blogService;
 
-        public GraphQlController(BlogService blogService)
+        public GraphQlController(IBlogService blogService)
         {
             this.blogService = blogService;
         }
