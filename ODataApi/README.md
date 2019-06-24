@@ -17,6 +17,7 @@ Queries:
 - Filter queries:
 -- https://help.nintex.com/en-us/insight/OData/HE_CON_ODATAQueryCheatSheet.htm#Filter
 -- http://localhost:51385/odata/v1/Authors?$expand=Posts,Socials&$filter=startswith(Name,'fr')
+-- http://localhost:51385/odata/v1/Authors?$orderby=Name%20asc
 
 Content-Type: application/json
 
