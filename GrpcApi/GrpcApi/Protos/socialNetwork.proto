@@ -1,0 +1,50 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service AuthorService {
+  rpc GetAll (google.protobuf.Empty) returns (stream Author) {};
+  rpc GetAuthorById (google.protobuf.Int32Value) returns (Author) {};
+  rpc GetPostsByAuthor (google.protobuf.Int32Value) returns (stream Post) {};
+  rpc GetSocialsByAuthor (google.protobuf.Int32Value) returns (stream SocialNetworkProfile) {};
+}
+
+message Author {
+  int32 id = 1;
+  string name = 2;
+  string bio = 3;
+  repeated Post posts = 4;
+  repeated SocialNetworkProfile socialNetworks = 5;
+}
+
+message Post {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  google.protobuf.Timestamp date = 4;
+  string url = 5;
+  int32 rating = 6;
+  repeated string categories = 7;
+  repeated Comment comments = 8;
+}
+
+message Comment {
+  int32 id = 1;
+  string commenter = 2;
+  string description = 3;
+}
+
+message SocialNetworkProfile {
+  int32 id = 1;
+  SocialNetworkType type = 2;
+  string nickName = 3;
+  string url = 4;
+}
+
+enum SocialNetworkType {
+  INSTAGRAM = 0;
+  LINKEDIN = 1;
+  FACEBOOK = 2;
+  TWITTER = 3;
+}

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shared;
 
 namespace GrpcApi
 {
@@ -12,6 +14,13 @@ namespace GrpcApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+
+            var options = new DbContextOptionsBuilder<SharedDbContext>()
+                .UseInMemoryDatabase(databaseName: "MyDB")
+                .Options;
+            services.AddSingleton(sp => new SharedDbContext(options));
+            services.AddScoped<BlogService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,7 +37,7 @@ namespace GrpcApi
             {
                 // Communication with gRPC endpoints must be made through a gRPC client.
                 // To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<GrpcApi.Services.AuthorService>();
             });
         }
     }

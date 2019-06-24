@@ -6,27 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Protos\greet.proto" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Protos\greet.proto">
-      <GrpcServices>Server</GrpcServices>
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.8.0" />
     <PackageReference Include="Grpc.Core" Version="1.21.0" />
     <PackageReference Include="Grpc.Tools" Version="1.21.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="ObjectDumper.NET" Version="2.4.19166.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
+    <Folder Include="Protos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\GrpcApi\Protos\socialNetwork.proto">
+      <Link>Protos\socialNetwork.proto</Link>
+    </Protobuf>
   </ItemGroup>
 
 </Project>
