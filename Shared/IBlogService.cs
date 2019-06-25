@@ -15,5 +15,6 @@ namespace Shared
         List<SocialNetworkProfile> GetSocialNetworkProfilesByAuthor(int id);
         Task<List<SocialNetworkProfile>> GetSocialNetworkProfilesByAuthorAsync(int id);
         Task<Author> AddAuthorAsync(Author author);
+        Author AddAuthor(Author author);
     }
 }

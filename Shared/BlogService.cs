@@ -84,5 +84,13 @@ namespace Shared
 
             return author;
         }
+
+        public Author AddAuthor(Author author)
+        {
+            _context.Authors.Add(author);
+            _context.SaveChanges();
+
+            return author;
+        }
     }
 }

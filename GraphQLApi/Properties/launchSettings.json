@@ -9,14 +9,6 @@
     }
   },
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "api/authors",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "IIS Express graphql": {
       "commandName": "IISExpress",
       "launchBrowser": true,
@@ -28,7 +20,7 @@
     "GraphQLApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/authors",
+      "launchUrl": "graphql",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

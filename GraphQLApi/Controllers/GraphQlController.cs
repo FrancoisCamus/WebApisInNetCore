@@ -1,8 +1,7 @@
 ﻿using GraphQL;
 using GraphQL.Types;
-using GraphQLApi.Queries;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
+using System;
 using System.Threading.Tasks;
 
 namespace GraphQLApi.Controllers
@@ -10,27 +9,40 @@ namespace GraphQLApi.Controllers
     [Route(Startup.GraphQlPath)]
     public class GraphQlController : Controller
     {
-        private readonly IBlogService blogService;
+        private readonly IDocumentExecuter documentExecuter;
+        private readonly ISchema schema;
 
-        public GraphQlController(IBlogService blogService)
+        public GraphQlController(ISchema schema, IDocumentExecuter documentExecuter)
         {
-            this.blogService = blogService;
+            this.schema = schema;
+            this.documentExecuter = documentExecuter;
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQlQuery query)
         {
-            var schema = new Schema { Query = new AuthorQuery(blogService) };
-            var result = await new DocumentExecuter().ExecuteAsync(x =>
+            if (query == null)
             {
-                x.Schema = schema;
-                x.Query = query.Query;
-                x.Inputs = query.Variables;
-            });
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            var inputs = query.Variables.ToInputs();
+            var executionOptions = new ExecutionOptions
+            {
+                Schema = this.schema,
+                Query = query.Query,
+                Inputs = inputs
+            };
+
+            var result = await this.documentExecuter
+                .ExecuteAsync(executionOptions)
+                .ConfigureAwait(false);
+
             if (result.Errors?.Count > 0)
             {
-                return BadRequest();
+                return BadRequest(result);
             }
+
             return Ok(result);
         }
     }

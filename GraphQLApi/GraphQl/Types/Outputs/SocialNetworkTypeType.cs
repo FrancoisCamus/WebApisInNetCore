@@ -1,7 +1,7 @@
 ﻿using GraphQL.Types;
 using Shared.Entities;
 
-namespace GraphQLApi.Queries.Types
+namespace GraphQLApi.GraphQl.Types.Outputs
 {
     public class SocialNetworkTypeType : EnumerationGraphType<SocialNetworkType>
     {

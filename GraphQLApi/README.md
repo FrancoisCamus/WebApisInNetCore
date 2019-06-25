@@ -1,36 +1,58 @@
-﻿Based on https://www.red-gate.com/simple-talk/dotnet/net-development/getting-started-with-graphql-in-asp-net/
+﻿Based on:
+- https://fullstackmark.com/post/17/building-a-graphql-api-with-aspnet-core-2-and-entity-framework-core
+- https://www.red-gate.com/simple-talk/dotnet/net-development/getting-started-with-graphql-in-asp-net/
 
 Sample Queries:
 
 ```
-query GetBlogData($id: Int!) {
-  author(id: $id) {
+query GetAuthors {
+  authors {
     id
     name
-  }
-  posts(id: $id) {
-    author {
-      bio
-    }
-    categories
-    comments {
-      commenter
-      description
-    }
-  }
-  socials(id: $id) {
-    nickName
-    type
+    bio
   }
 }
-```
 
-Sample Query Variables:
+query GetAuthors {
+  authors {
+    id
+    name
+    posts {
+      title
+      comments {
+        commenter
+      }
+    }
+    socials {
+      nickName
+    }
+  }
+}
 
-```
 {
     "id":1
 }
+```
+
+Mutation:
+
+```
+mutation ($author: AuthorInput!) {
+  createAuthor(author: $author) {
+    id
+    name
+    bio
+  }
+}
+
+{
+  "author": {
+    "id": 4,
+    "name": "franky",
+    "bio": "some developer"
+  }
+}
+
 ```
 
 - http://localhost:51373/api/authors/1
