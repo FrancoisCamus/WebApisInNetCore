@@ -32,6 +32,31 @@ query GetAuthor($id: Int!) {
 {
     "id":1
 }
+
+```
+
+- Query with Directive
+```
+query GetAuthor($id: Int!, $withPosts: Boolean!) {
+  author(id: $id) {
+    id
+    name 
+    posts @include(if: $withPosts) {
+      title
+      comments {
+        commenter
+      }
+    }
+    socials {
+      nickName
+    }
+  }
+}
+
+{
+  "id": 1,
+  "withPosts": true
+}
 ```
 
 Mutation:
