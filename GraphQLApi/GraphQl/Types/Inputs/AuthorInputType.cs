@@ -7,6 +7,7 @@ namespace GraphQLApi.GraphQl.Types.Inputs
         public AuthorInputType()
         {
             Name = "AuthorInput";
+
             Field<NonNullGraphType<IntGraphType>>("id");
             Field<NonNullGraphType<StringGraphType>>("name");
             Field<NonNullGraphType<StringGraphType>>("bio");

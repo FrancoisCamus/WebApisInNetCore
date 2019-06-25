@@ -12,21 +12,21 @@ namespace GraphQLApi.GraphQl.Types.Outputs
             Field(x => x.Name).Description("Name of an author");
             Field(x => x.Bio).Description("Bio description of an author");
 
-            Field<ListGraphType<PostType>>(
+            FieldAsync<ListGraphType<PostType>>(
                 name: "posts",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
-                resolve: context =>
+                resolve: async context =>
                 {
-                    return blogService.GetPostsByAuthor(context.Source.Id);
+                    return await blogService.GetPostsByAuthorAsync(context.Source.Id);
                 }
             );
 
-            Field<ListGraphType<SocialNetworkProfileType>>(
+            FieldAsync<ListGraphType<SocialNetworkProfileType>>(
                 name: "socials",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
-                resolve: context =>
+                resolve: async context =>
                 {
-                    return blogService.GetSocialNetworkProfilesByAuthor(context.Source.Id);
+                    return await blogService.GetSocialNetworkProfilesByAuthorAsync(context.Source.Id);
                 }
             );
         }

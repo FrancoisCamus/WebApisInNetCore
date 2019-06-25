@@ -9,8 +9,8 @@ namespace GraphQLApi.Controllers
     [Route(Startup.GraphQlPath)]
     public class GraphQlController : Controller
     {
-        private readonly IDocumentExecuter documentExecuter;
         private readonly ISchema schema;
+        private readonly IDocumentExecuter documentExecuter;
 
         public GraphQlController(ISchema schema, IDocumentExecuter documentExecuter)
         {
@@ -26,7 +26,7 @@ namespace GraphQLApi.Controllers
                 throw new ArgumentNullException(nameof(query));
             }
 
-            var inputs = query.Variables.ToInputs();
+            Inputs inputs = query.Variables.ToInputs();
             var executionOptions = new ExecutionOptions
             {
                 Schema = this.schema,
@@ -34,7 +34,7 @@ namespace GraphQLApi.Controllers
                 Inputs = inputs
             };
 
-            var result = await this.documentExecuter
+            ExecutionResult result = await this.documentExecuter
                 .ExecuteAsync(executionOptions)
                 .ConfigureAwait(false);
 

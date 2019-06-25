@@ -10,15 +10,15 @@ namespace GraphQLApi.GraphQl
     {
         public BlogServiceMutation(IBlogService blogService)
         {
-            Field<AuthorType>(
+            FieldAsync<AuthorType>(
                 "createAuthor",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<AuthorInputType>> { Name = "author" }
                 ),
-                resolve: context =>
+                resolve: async context =>
                 {
                     var author = context.GetArgument<Author>("author");
-                    return blogService.AddAuthor(author);
+                    return await blogService.AddAuthorAsync(author);
                 });
         }
     }

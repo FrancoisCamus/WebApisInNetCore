@@ -13,8 +13,8 @@ query GetAuthors {
   }
 }
 
-query GetAuthors {
-  authors {
+query GetAuthor($id: Int!) {
+  author(id: $id) {
     id
     name
     posts {

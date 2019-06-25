@@ -8,19 +8,19 @@ namespace GraphQLApi.GraphQl
     {
         public BlogServiceQuery(IBlogService blogService)
         {
-            Field<AuthorType>(
+            FieldAsync<AuthorType>(
                 name: "author",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
-                resolve: context =>
+                resolve: async context =>
                 {
                     var id = context.GetArgument<int>("id");
-                    return blogService.GetAuthorById(id);
+                    return await blogService.GetAuthorByIdAsync(id);
                 }
             );
 
-            Field<ListGraphType<AuthorType>>(
+            FieldAsync<ListGraphType<AuthorType>>(
                 "authors",
-                resolve: context => blogService.GetAllAuthors());
+                resolve: async context => await blogService.GetAllAuthorsAsync());
         }
     }
 }
