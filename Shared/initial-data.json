@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "name": "Dino Esposito",
+    "bio": "Dino Esposito has authored more than 20 books and 1,000 articles in ...",
+    "posts": [
+      {
+        "id": 1,
+        "title": "Building Better HTML Forms in Vanilla-JS",
+        "description": "Creating forms is one of the most basic skills for a web developer...",
+        "date": "2019-06-25T00:00:00+02:00",
+        "url": "https://www.red-gate.com/simple-talk/dotnet/net-development/building-better-html-forms-in-vanilla-js/",
+        "categories": [
+          ".NET Development"
+        ],
+        "rating": 5,
+        "comments": [
+          {
+            "id": 1,
+            "commenter": "Bob",
+            "description": "Bla bla bla"
+          }
+        ]
+      }
+    ],
+    "socials": [
+      {
+        "id": 1,
+        "type": 0,
+        "nickName": "@dino",
+        "url": "https://#"
+      },
+      {
+        "id": 2,
+        "type": 3,
+        "nickName": "@dino",
+        "url": "https://#"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Lance Talbert",
+    "bio": "Lance Talbert is a budding game developer that has been learning to program since ...",
+    "posts": [
+      {
+        "id": 2,
+        "title": "Voice Commands in Unity",
+        "description": "Today, we use voice in many ways. We can order groceries...",
+        "date": "2019-06-25T00:00:00+02:00",
+        "url": "https://www.red-gate.com/simple-talk/dotnet/c-programming/voice-commands-in-unity/",
+        "categories": [
+          "C# programming"
+        ],
+        "rating": 4,
+        "comments": [
+          {
+            "id": 2,
+            "commenter": "Fred",
+            "description": "Bla bla bla"
+          }
+        ]
+      }
+    ],
+    "socials": []
+  }
+]
