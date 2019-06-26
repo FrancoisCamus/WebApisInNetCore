@@ -20,6 +20,7 @@ namespace Shared
         {
             return await _context.Authors
                 .Include(a => a.Posts)
+                    .ThenInclude(p => p.Comments)
                 .Include(a => a.Socials)
                 .ToListAsync();
         }
@@ -28,6 +29,7 @@ namespace Shared
         {
             return await _context.Authors
                 .Include(p => p.Posts)
+                    .ThenInclude(p => p.Comments)
                 .Include(p => p.Socials)
                 .Where(author => author.Id == id)
                 .FirstOrDefaultAsync();

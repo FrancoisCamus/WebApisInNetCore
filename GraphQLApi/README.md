@@ -80,6 +80,15 @@ mutation ($author: AuthorInput!) {
 
 ```
 
+POST Request:
+
+```
+Content-Type: application/json
+
+{ "query":"query GetAuthors { authors { id name bio posts { date comments { commenter } } socials { type } } }", "variables":null, "operationName":"GetAuthors" }
+
+```
+
 - http://localhost:51373/api/authors/1
 - http://localhost:51373/api/authors/1/posts
 - http://localhost:51373/api/authors/1/socials

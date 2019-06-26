@@ -1,0 +1,168 @@
+[
+  {
+    "id": 1,
+    "name": "Sam Xu",
+    "bio": "Senior Software Engineer, OData at Microsoft",
+    "posts": [
+      {
+        "id": 1,
+        "title": "ASP.NET Core OData now Available",
+        "description": "The Microsoft OData Team is proud to announce general availability (GA) of OData (Open OData Protocol) on ASP.NET Core 2.0. It is now available through Nuget package at https://www.nuget.org/packages/Microsoft.AspNetCore.OData, current its version is 7.0.0.",
+        "date": "2018-07-03T00:00:00+02:00",
+        "url": "https://devblogs.microsoft.com/odata/asp-net-core-odata-now-available/",
+        "categories": [
+          ".NET Core",
+          "ASP.NET Core",
+          "OData"
+        ],
+        "rating": 4,
+        "comments": [
+          {
+            "id": 1,
+            "commenter": "mohammed agha",
+            "description": "can we use OData for exsiting api with sql database (ADO.net -- Stored procedures) and what about the filtering of data, is there anyway to dont get all records to memory and do the filter. Best Regards"
+          },
+          {
+            "id": 2,
+            "commenter": "Mark _",
+            "description": "Many code samples, which should have appeared inline with this article, are not visible here."
+          },
+          {
+            "id": 3,
+            "commenter": "Abhishek Bansal",
+            "description": "Great Article. A similar implementation can be found at below link: https://medium.com/@abhi.bansal08/why-odata-and-how-to-enable-odata-in-c-net-core-application-1f13ad6ca3d1"
+          }
+        ]
+      }
+    ],
+    "socials": [
+      {
+        "id": 1,
+        "type": "Github",
+        "nickName": "xuzhg",
+        "url": "https://github.com/xuzhg"
+      },
+      {
+        "id": 2,
+        "type": "StackOverflow",
+        "nickName": "sam-xu",
+        "url": "https://stackoverflow.com/users/3304931/sam-xu"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Mark Macneil",
+    "bio": "Hi, I'm Mark Macneil - a .net guy who spends most days making software in friendly Halifax, NS.",
+    "posts": [
+      {
+        "id": 2,
+        "title": "Building a GraphQL API with ASP.NET Core 2 and Entity Framework Core",
+        "description": "GraphQL is a relatively new technology developed initially at Facebook and open-sourced to the world in 2015. In 2017, it really took off and made the leap from a cool, niche technology to one of the primary ways companies like Walmart and IBM are starting to work with their APIs and data.",
+        "date": "2018-03-29T00:00:00+02:00",
+        "url": "https://fullstackmark.com/post/17/building-a-graphql-api-with-aspnet-core-2-and-entity-framework-core",
+        "categories": [
+          ".NET Core",
+          "ASP.NET Core",
+          "GraphQL",
+          "Entity Framework Core"
+        ],
+        "rating": 5,
+        "comments": [
+          {
+            "id": 4,
+            "commenter": "nportelli",
+            "description": "Using Entity Framework this way can lead to large amounts of queries, right? The whole N+1 issue."
+          },
+          {
+            "id": 5,
+            "commenter": "Joe McBride",
+            "description": "To combat N+1, you can use the DataLoader pattern. https://graphql-dotnet.gith..."
+          },
+          {
+            "id": 6,
+            "commenter": "Mark Macneil",
+            "description": "Awesome, thanks Joe!"
+          }
+        ]
+      }
+    ],
+    "socials": [
+      {
+        "id": 3,
+        "type": "Github",
+        "nickName": "mmacneil",
+        "url": "https://github.com/mmacneil"
+      },
+      {
+        "id": 4,
+        "type": "LinkedIn",
+        "nickName": "markmacneilhfx",
+        "url": "https://www.linkedin.com/in/markmacneilhfx"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Steve Gordon",
+    "bio": "Microsoft MVP",
+    "posts": [
+      {
+        "id": 3,
+        "title": "An Early Look at gRPC and ASP.NET Core 3.0. Creating an ASP.NET Core 3.0 gRPC client and server",
+        "description": "In this post, I want to introduce my very early experience (after a few hours of experimentation) of gRPC and ASP.NET Core 3.0. I've conducted some experiments as part of our quarterly Madgex hack day. This will be an introductory post so I don't expect to show everything in fine detail. This is intended to give an overview of how the main pieces fit together and I'll hopefully then dive into the details in future posts.",
+        "date": "2019-02-26T00:00:00+02:00",
+        "url": "https://www.stevejgordon.co.uk/early-look-at-grpc-using-aspnet-core-3",
+        "categories": [
+          ".NET Core",
+          "ASP.NET Core",
+          "gRPC"
+        ],
+        "rating": 5,
+        "comments": [
+          {
+            "id": 7,
+            "commenter": "Billy",
+            "description": "Steve. Your articles are helpful. Are all gRPC services singletons? Does it offer per-call or sessions? The documentation I found was unclear. Also, do you know of an IPC channel in gRPC for .NET?"
+          },
+          {
+            "id": 8,
+            "commenter": "Alain",
+            "description": "Hi great article, have you worked out how to host the grpc service on iis?"
+          },
+          {
+            "id": 9,
+            "commenter": "Steve Gordon",
+            "description": "Hi Alain. Thanks! The server end is a general ASP.NET Core application, so my assumption is that this should work behind IIS as with any other ASP.NET Core app. I haven't used IIS hosting in front of ASP.NET Core apps to be able to provide an authoritative answer though. Steve"
+          }
+        ]
+      }
+    ],
+    "socials": [
+      {
+        "id": 5,
+        "type": "Twitter",
+        "nickName": "stevejgordon",
+        "url": "https://twitter.com/stevejgordon"
+      },
+      {
+        "id": 6,
+        "type": "Github",
+        "nickName": "stevejgordon",
+        "url": "https://github.com/stevejgordon"
+      },
+      {
+        "id": 7,
+        "type": "LinkedIn",
+        "nickName": "steve-gordon-a6691114",
+        "url": "https://www.linkedin.com/in/steve-gordon-a6691114/"
+      },
+      {
+        "id": 8,
+        "type": "YouTube",
+        "nickName": "Steve Gordon",
+        "url": "https://www.youtube.com/channel/UC_rMpypHGP8_J8AAo_bLCmA"
+      }
+    ]
+  }
+]
