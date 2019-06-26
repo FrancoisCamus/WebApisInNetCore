@@ -19,7 +19,7 @@ namespace GrpcApi
                 .UseInMemoryDatabase(databaseName: "MyDB")
                 .Options;
             services.AddSingleton(sp => new SharedDbContext(options));
-            services.AddScoped<BlogService>();
+            services.AddScoped<IBlogService, BlogService>();
 
         }
 

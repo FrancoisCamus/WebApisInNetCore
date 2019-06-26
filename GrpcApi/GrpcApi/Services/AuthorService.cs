@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcApi.Mappers;
@@ -9,9 +10,9 @@ namespace GrpcApi.Services
     public class AuthorService : global::AuthorService.AuthorServiceBase
     {
 
-        private readonly BlogService blogService;
+        private readonly IBlogService blogService;
 
-        public AuthorService(BlogService blogService)
+        public AuthorService(IBlogService blogService)
         {
             this.blogService = blogService;
         }
@@ -21,7 +22,11 @@ namespace GrpcApi.Services
         {
             var authors = await this.blogService.GetAllAuthorsAsync();
             foreach (var author in authors)
+            {
                 await responseStream.WriteAsync(EntityToDtoMapper.MapAuthor(author));
+                Thread.Sleep(5000);
+
+            }
         }
   
         public override async Task<Author> GetAuthorById(Int32Value request, ServerCallContext context)
@@ -42,6 +47,12 @@ namespace GrpcApi.Services
             foreach (var social in socials)
                 await responseStream.WriteAsync(EntityToDtoMapper.MapSocialNetwork(social));
         }
+
+        public override async Task<Author> AddAuthor(Author request, ServerCallContext context)
+        {
+            var author = await this.blogService.AddAuthorAsync(DtoToEntityMapper.MapAuthor(request));
+            return EntityToDtoMapper.MapAuthor(author);
+         }
     }
 }
 

@@ -8,6 +8,8 @@ service AuthorService {
   rpc GetAuthorById (google.protobuf.Int32Value) returns (Author) {};
   rpc GetPostsByAuthor (google.protobuf.Int32Value) returns (stream Post) {};
   rpc GetSocialsByAuthor (google.protobuf.Int32Value) returns (stream SocialNetworkProfile) {};
+
+  rpc AddAuthor (Author) returns (Author) {};
 }
 
 message Author {

@@ -15,6 +15,27 @@ namespace GrpcApiClient
             var client = new AuthorService.AuthorServiceClient(channel);
 
 
+            Console.Write("Fetching Author...");
+            var author = await client.GetAuthorByIdAsync(new Int32Value { Value = 1 });
+            Console.Write(ObjectDumper.Dump(author));
+            Console.Write("Press any key to continue");
+            Console.ReadKey();
+
+
+            Console.Write("Add Author...");
+            author = new Author
+            {
+                Id = 3,
+                Name = "My New Author",
+                Bio = "My New Author has just been created"
+            };
+            author = await client.AddAuthorAsync(author);
+            Console.Write("Inserted !");
+            Console.Write("Press any key to continue");
+            Console.ReadKey();
+
+
+            Console.Write("Fetching All Authors...");
             var authors = client.GetAll(new Empty());
             var responseStream = authors.ResponseStream;
             while (await responseStream.MoveNext())
@@ -22,13 +43,11 @@ namespace GrpcApiClient
                 Console.WriteLine(ObjectDumper.Dump(responseStream.Current));
             }
 
-            var author = client.GetAuthorById(new Int32Value { Value = 1});
-            Console.Write(ObjectDumper.Dump(author));
- 
+            Console.Write("Press any key to continue");
+            Console.ReadKey();
+
             await channel.ShutdownAsync();
 
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
         }
     }
 }
