@@ -25,7 +25,7 @@ namespace GrpcApiClient
             Console.Write("Add Author...");
             author = new Author
             {
-                Id = 3,
+                Id = 4,
                 Name = "My New Author",
                 Bio = "My New Author has just been created"
             };
