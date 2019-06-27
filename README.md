@@ -27,4 +27,4 @@ The GrpcAPi and GrpcClient projects shows how to setup and use Grpc with ASP.NET
 
 All the above projects share the same data model: a simplified Blog Service.  
 The initial data is loaded with Entity Framework Core in-memory provider and can be access via a common SharedDbContext.
-This NET Standard 2.0 project contains the entities as well as the BlogService used to query or add data.
+This .NET Standard 2.0 project contains the entities as well as the BlogService used to query and add data.
