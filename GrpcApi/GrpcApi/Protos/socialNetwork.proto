@@ -49,4 +49,7 @@ enum SocialNetworkType {
   LINKEDIN = 1;
   FACEBOOK = 2;
   TWITTER = 3;
+  GITHUB = 4;
+  STACKOVERFLOW = 5;
+  YOUTUBE = 6;
 }
