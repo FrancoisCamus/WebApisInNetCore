@@ -41,7 +41,7 @@
   <Enum Name="Shared.Entities.SocialNetworkType">
     <Position X="5.75" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAQAAAAAAAAAAAAAAAACAAAABAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAIAwAAAAAEAAAAAAAAAACAAAABAAAAAAAA=</HashCode>
       <FileName>Entities\SocialNetworkType.cs</FileName>
     </TypeIdentifier>
   </Enum>
