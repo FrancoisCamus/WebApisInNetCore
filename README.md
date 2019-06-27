@@ -2,6 +2,11 @@
 
 This repository contains PoC projects on building Web APIs using .NET Core.
 
+## Prerequisites
+
+* Install .NET Core 2.2 SDK
+* Install .NET Core 3.0 Preview 6 SDK for gRPC
+
 ## REST
 
 The ClassicRestAPi project shows how to setup and use NSwag and API Versioning with ASP.NET Core 2.2.
