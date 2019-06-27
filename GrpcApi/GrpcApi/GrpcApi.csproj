@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\socialNetwork.proto" GrpcServices="Server" Generator="MSBuild:Compile" />
-    <Content Include="Protos\socialNetwork.proto" />
     <None Remove="@(Protobuf)" />
     <None Remove="Protos\socialnetwork.proto" />
   </ItemGroup>
